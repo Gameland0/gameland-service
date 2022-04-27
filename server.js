@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 
 var corsOptions = {
-  origin: ["http://localhost:8081","http://101.36.113.47","http://gameland.network","https://gameland.network","https://testnet.gameland.network"]
+  origin: ["http://localhost:8081","http://101.36.113.47","http://gameland.network","https://gameland.network","https://dapp.gameland.network"]
 };
 
 app.use(cors(corsOptions));
@@ -38,7 +38,7 @@ require("./app/routes/members.routes")(app);
 require("./app/routes/members.apply.routes")(app);
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8088;
+const PORT = 8089;
 app.listen(PORT, () => {
   console.log(`Server is running on port http://localhost:${PORT}`);
 });

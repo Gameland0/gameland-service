@@ -11,6 +11,9 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       unique: true
     },
+    metadata: {
+      type: Sequelize.STRING
+    },
     originOwner: {
       type: Sequelize.STRING
     },
