@@ -1,0 +1,25 @@
+{
+  "name": "gameland-server",
+  "version": "0.0.1",
+  "author": "Leo",
+  "main": "server.js",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "ethers": "^5.4.7",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.0",
+    "sequelize": "^6.6.5",
+    "web3": "^1.5.2"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "devDependencies": {
+    "ethereum-waffle": "^3.4.0"
+  }
+}
