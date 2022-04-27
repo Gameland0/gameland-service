@@ -2,7 +2,7 @@ module.exports = {
   HOST: process.env.HOST,
   USER: process.env.USERNAME,
   PASSWORD: process.env.PSW,
-  DB: process.env.DATABASE,
+  DB: process.env.DATABASE_POLYGON,
   dialect: "mysql",
   pool: {
     max: 5,
