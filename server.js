@@ -23,16 +23,16 @@ app.use(express.urlencoded({ extended: true }));
 const web3Storage_upload = async (file) => {
   const client = await create()
   const fileCid = await client.uploadFile(file)
-  return fileCid
+  return fileCid.toString()
 }
 
 
 app.post("/upload", (req, res) => {
   let info = {};
   const option = {
-    maxFileSize: 900 * 1024 * 1024
+    maxFileSize: 1 * 1024 * 1024 * 1024
   }
-  const form = new formidable.IncomingForm();
+  const form = new formidable.IncomingForm(option);
   form.encoding = "utf-8";
   form.parse(req, function (error, fields, files) {
     if (error) {
@@ -40,23 +40,26 @@ app.post("/upload", (req, res) => {
       info.message = error.message;
       res.send(info);
     }
-    console.log(files.files.filepath)
     fs.readFile(files.files.filepath, async (err, data) => {
       if (err) {
-        callback(err);
+        res.send(err);
       } else {
         const blob = new Blob([data],{type: files.files.mimetype});
-        const cid = await web3Storage_upload(blob)
-        if (cid) {
+        try {
+          const cid = await web3Storage_upload(blob)
+          if (cid) {
+            res.send({
+              code: 1,
+              CID: cid
+            });
+          }
+        } catch (error) {
           res.send({
-            code: 1,
-            CID: cid
+            code: 0,
+            message: error.message
           });
         }
       }
-    });
-    res.send({
-      code: 1,
     });
   });
 });
